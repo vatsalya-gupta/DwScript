@@ -12,11 +12,15 @@ WARNING: Will downloaded to the directory with abuscript
 '''
 
 import argparse
+import json
 import os
 import re
-import urllib2
 import time
-import json
+
+
+from gooey import Gooey, GooeyParser
+
+
 # Copyright
 
 def get_all_threads(board):
@@ -102,8 +106,9 @@ def fix_array(array):
     #Checking for dublicat
     return list(set(array))
 
-if __name__ == '__main__':
-    ar = argparse.ArgumentParser("python abuscript.py full link",\
+@Gooey(language='english')
+def main():
+    ar = GooeyParser(description="python abuscript.py full link",\
     epilog="Example: python abuscript.py https://2ch.hk/b/res/143636089.html \n \
     Easy-to-Use download webm's, pictures or gifs \n \
     Files will downloaded in dir with script \n \
@@ -129,3 +134,6 @@ if __name__ == '__main__':
         download_board(board)
     else:
         download_thread(link)
+
+if __name__ == '__main__':
+    main()
